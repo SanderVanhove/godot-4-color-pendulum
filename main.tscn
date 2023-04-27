@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://cudsarc0jxphg"]
+
+[ext_resource type="Script" path="res://Pendulum.gd" id="1_rw7wr"]
+[ext_resource type="Texture2D" uid="uid://bbrmffvvn5efc" path="res://circle.png" id="1_w0ytj"]
+[ext_resource type="Script" path="res://main.gd" id="1_wtm3x"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ymdu6"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sqnhx"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w82hf"]
+blend_mode = 1
+
+[sub_resource type="Environment" id="Environment_4neq6"]
+background_mode = 3
+glow_enabled = true
+glow_levels/3 = 0.0
+glow_levels/5 = 1.36
+glow_levels/6 = 1.35
+glow_intensity = 1.98
+glow_strength = 0.79
+glow_bloom = 0.16
+glow_blend_mode = 0
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_wtm3x")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+own_world_3d = true
+size = Vector2i(1152, 648)
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport"]
+offset_right = 1162.0
+offset_bottom = 654.0
+color = Color(0.0156863, 0, 0.0156863, 0.713726)
+
+[node name="Pendulum" type="Node2D" parent="SubViewportContainer/SubViewport"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(366, 165)
+script = ExtResource("1_rw7wr")
+
+[node name="Circle" type="Sprite2D" parent="SubViewportContainer/SubViewport/Pendulum"]
+material = SubResource("CanvasItemMaterial_ymdu6")
+position = Vector2(0, 235)
+scale = Vector2(0.653333, 0.653333)
+texture = ExtResource("1_w0ytj")
+
+[node name="Pendulum2" type="Node2D" parent="SubViewportContainer/SubViewport"]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(366, 165)
+script = ExtResource("1_rw7wr")
+delay = 0.1
+
+[node name="Circle" type="Sprite2D" parent="SubViewportContainer/SubViewport/Pendulum2"]
+material = SubResource("CanvasItemMaterial_sqnhx")
+position = Vector2(0, 235)
+scale = Vector2(0.653333, 0.653333)
+texture = ExtResource("1_w0ytj")
+
+[node name="Pendulum3" type="Node2D" parent="SubViewportContainer/SubViewport"]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(366, 165)
+script = ExtResource("1_rw7wr")
+delay = 0.2
+
+[node name="Circle" type="Sprite2D" parent="SubViewportContainer/SubViewport/Pendulum3"]
+material = SubResource("CanvasItemMaterial_w82hf")
+position = Vector2(0, 235)
+scale = Vector2(0.653333, 0.653333)
+texture = ExtResource("1_w0ytj")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4neq6")
